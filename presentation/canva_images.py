@@ -143,3 +143,37 @@ for i, (img, lab) in enumerate([("squat", "Squat"), ("lunge", "Lunge"), ("legpre
     a = f.add_axes([0.01 + i * 0.25, 0.18, 0.23, 0.6]); a.axis("off"); a.imshow(mpimg.imread(os.path.join(IMG, img + ".png")))
     f.text(0.125 + i * 0.25, 0.08, lab, fontsize=20, weight="bold", color=NAVY, ha="center")
 f.savefig(os.path.join(OUT, "program_landscape.png"), facecolor="white"); plt.close(f)
+
+
+# ---- Program cards per Stensrud 2012 appendix (4 rows per card) ----
+def column4(name, title, items, color):
+    f = plt.figure(figsize=(6, 8), dpi=150); f.patch.set_facecolor("white")
+    ax = f.add_axes([0, 0.9, 1, 0.1]); ax.axis("off")
+    ax.add_patch(Rectangle((0, 0), 1, 1, color=color, transform=ax.transAxes))
+    ax.text(0.5, 0.5, title, color="white", fontsize=24, weight="bold", ha="center", va="center")
+    n = len(items); h = 0.88 / n
+    for i, (img, label, dose) in enumerate(items):
+        top = 0.88 - (i + 1) * h
+        a = f.add_axes([0.02, top + 0.01, 0.42, h - 0.02]); a.axis("off")
+        a.imshow(mpimg.imread(os.path.join(IMG, img + ".png")))
+        t = f.add_axes([0.46, top, 0.52, h]); t.axis("off")
+        t.text(0, 0.62, label, fontsize=19, weight="bold", color=NAVY, va="center", linespacing=1.0)
+        t.text(0, 0.22, dose, fontsize=15, color="#556575", va="center")
+    f.savefig(os.path.join(OUT, name + ".png"), facecolor="white"); plt.close(f)
+
+
+column4("prog_a", "Warm-up + Neuromuscular", [
+    ("bike", "Stationary cycle", "20 min warm-up"),
+    ("squat", "Squat", "3 x 10"),
+    ("singlesquat", "Single-leg squat", "3 x 10"),
+    ("stepup", "Step-up", "3 x 10")], TEAL)
+column4("prog_b", "Balance + Plyometric", [
+    ("pullloop", "Knee stability\nin pull loop", "3 x 10 (balance pad)"),
+    ("skating", "Skating", "3 x 10 (after wk 4)"),
+    ("limpingcross", "Limping cross", "3 x 3 rounds (after wk 4)")], NAVY)
+column4("prog_c", "Strength (single-leg)", [
+    ("legpress", "Leg press", "2-4 x 15 -> 6 (+2)"),
+    ("kneeext", "Knee extension", "2-4 x 15 -> 6 (+2)"),
+    ("legcurl", "Leg curl", "2-4 x 15 -> 6 (+2)"),
+    ("fitball", "Hamstring\non Fitball", "3 x 8")], CORAL)
+print("cards ok")
