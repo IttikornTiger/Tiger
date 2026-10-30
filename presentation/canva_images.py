@@ -139,7 +139,7 @@ f = plt.figure(figsize=(10, 6), dpi=150); f.patch.set_facecolor("white")
 ax = f.add_axes([0, 0.82, 1, 0.18]); ax.axis("off")
 ax.add_patch(Rectangle((0, 0), 1, 1, color=TEAL, transform=ax.transAxes))
 ax.text(0.5, 0.5, "12-week exercise therapy", color="white", fontsize=28, weight="bold", ha="center", va="center")
-for i, (img, lab) in enumerate([("squat", "Squat"), ("lunge", "Lunge"), ("legpress", "Leg press"), ("kneeext", "Knee ext.")]):
+for i, (img, lab) in enumerate([("squat", "Squat"), ("stepup", "Step-up"), ("legpress", "Leg press"), ("kneeext", "Knee ext.")]):
     a = f.add_axes([0.01 + i * 0.25, 0.18, 0.23, 0.6]); a.axis("off"); a.imshow(mpimg.imread(os.path.join(IMG, img + ".png")))
     f.text(0.125 + i * 0.25, 0.08, lab, fontsize=20, weight="bold", color=NAVY, ha="center")
 f.savefig(os.path.join(OUT, "program_landscape.png"), facecolor="white"); plt.close(f)
