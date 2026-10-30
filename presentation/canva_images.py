@@ -93,3 +93,42 @@ for i, (big, cap, c) in enumerate([
     ax.text(x + 2.4, 1.5, cap, color="white", fontsize=19, ha="center", va="center")
 f.savefig(os.path.join(OUT, "results.png"), facecolor="white"); plt.close(f)
 print(sorted(os.listdir(OUT)))
+
+
+# Portrait variants for the tall photo frames
+def portrait(src, name):
+    f = plt.figure(figsize=(6, 8), dpi=150); f.patch.set_facecolor("white")
+    a = f.add_axes([0, 0.2, 1, 0.6]); a.axis("off"); a.imshow(mpimg.imread(os.path.join(OUT, src)))
+    f.savefig(os.path.join(OUT, name), facecolor="white"); plt.close(f)
+
+
+# Vertical study flow
+f, ax = plt.subplots(figsize=(6, 8), dpi=150)
+f.patch.set_facecolor("white"); ax.set_xlim(0, 6); ax.set_ylim(0, 8); ax.axis("off")
+def vnode(y, txt, c, h=1.0):
+    ax.add_patch(FancyBboxPatch((0.5, y - h / 2), 5, h, boxstyle="round,pad=0.08", color=c))
+    ax.text(3, y, txt, color="white", fontsize=17, ha="center", va="center", weight="bold")
+vnode(7.2, "140 patients, 35-60 y\nMRI-verified tear", NAVY)
+vnode(5.7, "Randomised 1:1", "#556575", 0.7)
+ax.add_patch(FancyBboxPatch((0.3, 3.4), 2.6, 1.3, boxstyle="round,pad=0.08", color=TEAL))
+ax.text(1.6, 4.05, "Exercise\n12 wk\n(n = 70)", color="white", fontsize=15, ha="center", va="center", weight="bold")
+ax.add_patch(FancyBboxPatch((3.1, 3.4), 2.6, 1.3, boxstyle="round,pad=0.08", color=CORAL))
+ax.text(4.4, 4.05, "Surgery\nAPM\n(n = 70)", color="white", fontsize=15, ha="center", va="center", weight="bold")
+vnode(1.9, "Primary: KOOS4 at 2 y", "#556575", 0.8)
+vnode(0.7, "Strength: 3 & 12 mo", "#556575", 0.8)
+for x in (1.6, 4.4):
+    ax.annotate("", xy=(x, 4.8), xytext=(3, 5.3), arrowprops=dict(arrowstyle="-|>", lw=2.5, color="#556575"))
+    ax.annotate("", xy=(3, 2.35), xytext=(x, 3.3), arrowprops=dict(arrowstyle="-|>", lw=2.5, color="#556575"))
+ax.annotate("", xy=(3, 6.1), xytext=(3, 6.65), arrowprops=dict(arrowstyle="-|>", lw=2.5, color="#556575"))
+f.savefig(os.path.join(OUT, "study_design_portrait.png"), facecolor="white"); plt.close(f)
+
+# Equipment portrait card
+f = plt.figure(figsize=(6, 8), dpi=150); f.patch.set_facecolor("white")
+a = f.add_axes([0, 0.55, 1, 0.45]); a.axis("off"); a.imshow(mpimg.imread(os.path.join(OUT, "knee_meniscus.png"))[60:820, 180:1420])
+items = [("MRI / X-ray", NAVY), ("KOOS questionnaire", TEAL), ("Isokinetic dynamometer", CORAL), ("Hop tests", NAVY)]
+for i, (t, c) in enumerate(items):
+    b = f.add_axes([0.08, 0.42 - i * 0.12, 0.84, 0.095]); b.axis("off")
+    b.add_patch(FancyBboxPatch((0, 0), 1, 1, boxstyle="round,pad=0.02", color=c, transform=b.transAxes))
+    b.text(0.5, 0.5, t, color="white", fontsize=19, weight="bold", ha="center", va="center")
+f.savefig(os.path.join(OUT, "equipment_portrait.png"), facecolor="white"); plt.close(f)
+print("portraits ok")
