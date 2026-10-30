@@ -79,17 +79,13 @@ text(s, 0.8, 0.7, 9, 0.5, "สรุปงานวิจัย  |  RANDOMISED C
 text(s, 0.8, 1.25, 9.2, 2.4,
      "การออกกำลังกายเทียบกับการผ่าตัดส่องกล้องตัดหมอนรองข้อเข่าบางส่วน "
      "ในผู้ป่วยวัยกลางคนที่หมอนรองข้อเข่าฉีกขาดแบบเสื่อม: ติดตามผล 2 ปี", 32, WHITE, True)
-text(s, 0.8, 3.5, 9.2, 1.0,
+text(s, 0.8, 3.75, 9.2, 1.2,
      "Exercise therapy versus arthroscopic partial meniscectomy for degenerative meniscal tear "
      "in middle aged patients: randomised controlled trial with two year follow-up", 16,
      RGBColor(0xC9, 0xD8, 0xE4))
-text(s, 0.8, 4.4, 9.2, 0.8,
+text(s, 0.8, 4.95, 9.2, 0.9,
      ["Kise NJ, Risberg MA, Stensrud S, Ranstam J, Engebretsen L, Roos EM",
       "BMJ 2016;354:i3740  •  Open Access"], 15, RGBColor(0xC9, 0xD8, 0xE4))
-box(s, 0.8, 5.3, 11.7, 0.6, RGBColor(0x2B, 0x4D, 0x6E))
-text(s, 0.95, 5.3, 11.5, 0.6,
-     [("คำสั่งค้นหา:  Meniscus injury and Bursitis  →  การออกกำลังกาย (Exercise)", {"bold": True})],
-     17, WHITE, anchor=MSO_ANCHOR.MIDDLE)
 text(s, 0.8, 6.35, 11.8, 0.9, "ผู้นำเสนอ: ..............................................   รหัสนักศึกษา: ..............................",
      20, WHITE, True, anchor=MSO_ANCHOR.MIDDLE)
 
